@@ -1,6 +1,6 @@
 # FAHHH
 
-Plays FAHHH every time you misspell a command
+Plays FAHHH every time you mistype a command
 
 ## Install
 
