@@ -2,6 +2,8 @@
 
 Plays FAHHH every time you mistype a command
 
+https://github.com/user-attachments/assets/b45610fd-4496-433b-9fef-5fb6bd767e99
+
 ## Install
 
 ```sh
