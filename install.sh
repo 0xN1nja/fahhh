@@ -32,7 +32,7 @@ fi
 read -r -d '' HANDLER_ZSH <<EOF || true
 
 command_not_found_handler() {
-  $PLAYER "$SOUND_FILE" >/dev/null 2>&1 &
+  ($PLAYER "$SOUND_FILE" >/dev/null 2>&1) &
   echo "zsh: command not found: \$1" >&2
   return 127
 }
@@ -41,7 +41,7 @@ EOF
 read -r -d '' HANDLER_BASH <<EOF || true
 
 command_not_found_handle() {
-  $PLAYER "$SOUND_FILE" >/dev/null 2>&1 &
+  ($PLAYER "$SOUND_FILE" >/dev/null 2>&1) &
   echo "bash: command not found: \$1" >&2
   return 127
 }
