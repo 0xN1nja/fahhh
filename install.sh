@@ -3,12 +3,11 @@
 REPO="https://raw.githubusercontent.com/0xN1nja/fahhh/master"
 INSTALL_DIR="$HOME/.local/share/fahhh"
 SOUND_FILE="$INSTALL_DIR/fahhh.mp3"
-SCRIPT_DIR="$(dirname "${BASH_SOURCE[0]:-$0}")"
 
 mkdir -p "$INSTALL_DIR"
 
-if [[ -f "$SCRIPT_DIR/assets/fahhh.mp3" ]]; then
-	cp "$SCRIPT_DIR/assets/fahhh.mp3" "$SOUND_FILE"
+if [[ -n "${BASH_SOURCE[0]:-}" && -f "$(dirname "${BASH_SOURCE[0]}")/assets/fahhh.mp3" ]]; then
+	cp "$(dirname "${BASH_SOURCE[0]}")/assets/fahhh.mp3" "$SOUND_FILE"
 else
 	curl -fsSL "$REPO/assets/fahhh.mp3" -o "$SOUND_FILE"
 fi
