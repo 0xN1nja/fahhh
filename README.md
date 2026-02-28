@@ -10,6 +10,14 @@ curl -fsSL https://raw.githubusercontent.com/0xN1nja/fahhh/master/install.sh | b
 
 then restart your terminal.
 
+## Uninstall
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/0xN1nja/fahhh/master/uninstall.sh | bash
+```
+
+then restart your terminal.
+
 ## Requirements
 
 - zsh or bash
