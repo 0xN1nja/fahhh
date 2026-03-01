@@ -29,8 +29,25 @@ remove_from_rc() {
 	REMOVED+=("$rc_file")
 }
 
+remove_fish() {
+	local fish_func="$HOME/.config/fish/functions/fish_command_not_found.fish"
+
+	if [[ ! -f "$fish_func" ]]; then
+		return
+	fi
+
+	if ! grep -q "fahhh" "$fish_func" 2>/dev/null; then
+		echo "fahhh is not installed in $fish_func — skipping."
+		return
+	fi
+
+	rm -f "$fish_func"
+	REMOVED+=("$fish_func")
+}
+
 remove_from_rc "$HOME/.zshrc"
 remove_from_rc "$HOME/.bashrc"
+remove_fish
 
 if [[ -d "$HOME/.local/share/fahhh" ]]; then
 	rm -rf "$HOME/.local/share/fahhh"
