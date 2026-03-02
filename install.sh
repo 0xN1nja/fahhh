@@ -76,7 +76,7 @@ inject_fish() {
 
 	cat >"$FISH_FUNC" <<EOF
 function fish_command_not_found
-  ($PLAYER "$SOUND_FILE" >/dev/null 2>&1) &
+  $PLAYER "$SOUND_FILE" >/dev/null 2>&1 &
   echo "fish: unknown command: \$argv[1]" >&2
 end
 EOF
