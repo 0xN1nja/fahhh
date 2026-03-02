@@ -2,28 +2,36 @@
 
 REPO="https://raw.githubusercontent.com/0xN1nja/fahhh/master"
 INSTALL_DIR="$HOME/.local/share/fahhh"
-SOUND_FILE="$INSTALL_DIR/fahhh.mp3"
+MP3_FILE="$INSTALL_DIR/fahhh.mp3"
+WAV_FILE="$INSTALL_DIR/fahhh.wav"
 FISH_FUNC="$HOME/.config/fish/functions/fish_command_not_found.fish"
 
 mkdir -p "$INSTALL_DIR"
 
 if [[ -n "${BASH_SOURCE[0]:-}" && -f "$(dirname "${BASH_SOURCE[0]}")/assets/fahhh.mp3" ]]; then
-	cp "$(dirname "${BASH_SOURCE[0]}")/assets/fahhh.mp3" "$SOUND_FILE"
+	cp -r "$(dirname "${BASH_SOURCE[0]}")"/assets/* "$INSTALL_DIR"
 else
-	curl -fsSL "$REPO/assets/fahhh.mp3" -o "$SOUND_FILE"
+	curl -fsSL -o "$MP3_FILE" "$REPO/assets/fahhh.mp3" -o "$WAV_FILE" "$REPO/assets/fahhh.wav"
 fi
 
-if [[ ! -f "$SOUND_FILE" ]]; then
+if [[ ! -f "$MP3_FILE" ]]; then
 	echo "failed to get fahhh.mp3"
 	exit 1
 fi
 
+if [[ ! -f "$WAV_FILE" ]]; then
+	echo "failed to get fahhh.wav"
+	exit 1
+fi
+
+SOUND_FILE="$MP3_FILE"
 if [[ "$OSTYPE" == "darwin"* ]]; then
 	PLAYER="afplay"
 elif command -v paplay &>/dev/null; then
 	PLAYER="paplay"
 elif command -v aplay &>/dev/null; then
 	PLAYER="aplay"
+    SOUND_FILE="$WAV_FILE"
 else
 	echo "no supported audio player found (afplay, paplay, aplay)"
 	exit 1
